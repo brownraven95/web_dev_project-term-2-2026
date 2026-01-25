@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stock Tracker</title>
+    <!-- External CSS and Font Links -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favi.png">
+</head>
+
+<body>
+    <!-- Main Container for Layout -->
+    <div class="container">
+        <!-- Header Section with Navigation Bar -->
+        <header class="navbar">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>StockTracker</h1>
+            </div>
+            <div class="app-status">
+                <span class="status-indicator active"></span>
+                <span>Live Data</span>
+                <span id="lastUpdate">Just now</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Controls Panel for Adding Stocks and Settings -->
+            <section class="panel control-panel">
+                <h2><i class="fas fa-cog"></i> Controls</h2>
+                <div class="form-group">
+                    <label for="stockInput">Add Stock Symbol</label>
+                    <div class="input-with-btn">
+                        <input type="text" id="stockInput" placeholder="e.g., AAPL, TSLA, MSFT" maxlength="10">
+                        <button id="addBtn" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                    <p class="hint">Popular: AAPL, TSLA, MSFT, GOOGL, AMZN</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Auto-refresh: <span id="intervalValue">5</span>s</label>
+                    <input type="range" id="refreshSlider" min="2" max="30" value="5">
+                    <div class="btn-group">
+                        <button id="pauseBtn" class="btn btn-secondary">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button id="resetBtn" class="btn btn-outline">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification Controls -->
+                <div class="notification-control">
+                    <h3><i class="fas fa-bell"></i> Notifications</h3>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="notificationToggle" checked>
+                        <label for="notificationToggle"></label>
+                        <span>Enable Alerts</span>
+                    </div>
+                    <button id="testNotify" class="btn btn-small">
+                        <i class="fas fa-bell"></i> Test Notification
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stocks Panel for Displaying Tracked Stocks -->
+            <section class="panel stocks-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-list"></i> Tracked Stocks</h2>
+                    <span class="badge" id="stockCount">0</span>
+                </div>
+                
+                <div id="stocksContainer">
+                    <!-- Empty State When No Stocks Are Added -->
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>No stocks being tracked</h3>
+                        <p>Add stocks to start monitoring prices</p>
+                        <div class="suggestions">
+                            <button class="suggestion-btn" data-symbol="AAPL">AAPL</button>
+                            <button class="suggestion-btn" data-symbol="TSLA">TSLA</button>
+                            <button class="suggestion-btn" data-symbol="MSFT">MSFT</button>
+                            <button class="suggestion-btn" data-symbol="GOOGL">GOOGL</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alerts Panel for Setting and Viewing Price Alerts -->
+            <section class="panel alerts-panel">
+                <h2><i class="fas fa-bullhorn"></i> Price Alerts</h2>
+                
+                <!-- Form for Setting New Alerts -->
+                <div class="alert-form">
+                    <div class="form-row">
+                        <select id="alertStockSelect" disabled>
+                            <option value="">Select Stock</option>
+                        </select>
+                        <select id="alertCondition">
+                            <option value="above">Above</option>
+                            <option value="below">Below</option>
+                        </select>
+                        <input type="number" id="alertPrice" placeholder="Price" step="0.01" disabled>
+                        <button id="setAlertBtn" class="btn btn-primary" disabled>
+                            <i class="fas fa-bell"></i> Set Alert
+                        </button>
+                    </div>
+                </div>
+
+                <!-- List of Active Alerts -->
+                <div id="alertsList">
+                    <h3>Active Alerts</h3>
+                    <div class="empty-alerts">
+                        <p>No alerts set</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Log Panel for Activity History -->
+            <section class="panel log-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-history"></i> Activity Log</h2>
+                    <button id="clearLog" class="btn btn-small">Clear</button>
+                </div>
+                <div id="logEntries">
+                    <!-- Initial Log Entry -->
+                    <div class="log-entry">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <p>Welcome to StockTracker! Add stocks to begin.</p>
+                            <small>Just now</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <p><strong>Web Dev II Final Project</strong> | Stock Tracker with Dummy Data</p>
+            <p class="footer-note">This site uses simulated stock data for demonstration purposes.</p>
+        </footer>
+    </div>
+
+    <!-- External JavaScript Libraries and Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
