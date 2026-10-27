@@ -147,4 +147,4 @@ Uses simulated stock data (not real market prices)
 
 No backend integration
 
-Chart data is short-term
+Chart data is short-term.
